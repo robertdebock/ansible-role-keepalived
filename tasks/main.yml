@@ -1,5 +1,8 @@
 ---
 # tasks file for keepalived
+- name: include assert.yml
+  include_tasks: assert.yml
+  run_once: yes
 
 - name: install keepalived
   package:
