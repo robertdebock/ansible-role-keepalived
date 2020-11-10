@@ -4,7 +4,7 @@ Install and configure keepalived
 
 |Travis|GitHub|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-keepalived.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-keepalived)|[![github](https://github.com/robertdebock/ansible-role-keepalived/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-keepalived/actions)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/keepalived)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/keepalived)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-keepalived.svg)](https://github.com/robertdebock/ansible-role-keepalived/releases/)|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-keepalived.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-keepalived)|[![github](https://github.com/robertdebock/ansible-role-keepalived/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-keepalived/actions)|[![quality](https://img.shields.io/ansible/quality/51728)](https://galaxy.ansible.com/robertdebock/keepalived)|[![downloads](https://img.shields.io/ansible/role/d/51728)](https://galaxy.ansible.com/robertdebock/keepalived)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-keepalived.svg)](https://github.com/robertdebock/ansible-role-keepalived/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -99,8 +99,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |container|tags|
 |---------|----|
 |alpine|all|
-|amazon|all|
-|el|7, 8|
+|el|8|
 |debian|all|
 |fedora|all|
 |opensuse|all|
