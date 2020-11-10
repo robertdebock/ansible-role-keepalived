@@ -14,7 +14,7 @@
       - item.name | length > 0
       - item.state is defined
       - item.state | length > 0
-      - item.state in ["BACKUP", "MASTER"]
+      - item.state in [ "BACKUP", "MASTER" ]
       - item.interface is defined
       - item.interface | length > 0
       - item.virtual_router_id is defined

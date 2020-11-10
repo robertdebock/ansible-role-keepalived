@@ -12,7 +12,7 @@
     that:
       - item.auth_type is defined
       - item.auth_type | length > 0
-      - item.auth_type in ["AH", "PASS", "PASS|AH"]
+      - item.auth_type in [ "AH", "PASS", "PASS|AH" ]
       - item.auth_pass is defined
       - item.auth_pass | length > 0
   loop: "{{ instance.authentication }}"
