@@ -4,6 +4,22 @@
   become: yes
   gather_facts: yes
 
+  vars:
+    _keepalived_iproute_package:
+      default: iproute
+      Alpine: iproute2
+      Debian: iproute2
+      Suse: iproute2
+    keepalived_iproute_package: "{{ _keepalived_iproute_package[ansible_os_family] | default(_keepalived_iproute_package['default']) }}"
+
   tasks:
-    - name: check if connection still works
-      ping:
+    - name: install iproute
+      package:
+        name: "{{ keepalived_iproute_package }}"
+        state: present
+
+    - name: check ip addr show
+      command: ip addr show
+      register: keepalived_check_ip_addr_show
+      failed_when:
+        - "'192.168.122.200/24' not in keepalived_check_ip_addr_show.stdout"

@@ -10,24 +10,24 @@
 - name: test if item in instance.authentication is set correctly
   assert:
     that:
-      - item.auth_type is defined
-      - item.auth_type | length > 0
-      - item.auth_type in [ "AH", "PASS", "PASS|AH" ]
-      - item.auth_pass is defined
-      - item.auth_pass | length > 0
-  loop: "{{ instance.authentication }}"
-  loop_control:
-    label: "{{ item.auth_type }}"
+      - instance.authentication.auth_type is defined
+      - instance.authentication.auth_type | length > 0
+      - instance.authentication.auth_type in [ "AH", "PASS", "PASS|AH" ]
+      - instance.authentication.auth_pass is defined
+      - instance.authentication.auth_pass | length > 0
+      - instance.authentication.auth_pass | length <= 20
 
 - name: test if item in instance.virtual_ipaddresses is set correctly
   assert:
     that:
+      - item | length > 0
+      - item | length <= 20
       - item.name is defined
       - item.name | length > 0
       - item.cidr is defined
       - item.cidr | int
       - item.cidr | int >= 0
       - item.cidr | int <= 32
-  loop: "{{ instance.authentication }}"
+  loop: "{{ instance.virtual_ipaddresses }}"
   loop_control:
-    label: "{{ item.auth_type }}"
+    label: "{{ item.name }}"

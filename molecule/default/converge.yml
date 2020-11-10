@@ -14,7 +14,7 @@
           priority: 255
           authentication:
             auth_type: PASS
-            auth_pass: 12345
+            auth_pass: "12345"
           virtual_ipaddresses:
             - name: 192.168.122.200
               cidr: 24

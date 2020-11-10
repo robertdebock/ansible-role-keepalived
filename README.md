@@ -26,7 +26,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
           priority: 255
           authentication:
             auth_type: PASS
-            auth_pass: 12345
+            auth_pass: "12345"
           virtual_ipaddresses:
             - name: 192.168.122.200
               cidr: 24
@@ -52,6 +52,17 @@ These variables are set in `defaults/main.yml`:
 ```yaml
 ---
 # defaults file for keepalived
+
+# By default, there is not configuration, because there is no "sane default" to
+# set. You'll have to set it yourself. Here are a few hints.
+#
+# Have a look in `molecule/default/converge.yml` for an example.
+# You do not need to set the state to `MASTER`, all nodes can also be set to
+# `BACKUP`, in which case a random host will be selected to configure the
+# virtual IP. Setting `state` to `MASTER` only initially sets that host to be
+# the master. Over time, other nodes will likely become master.
+#
+# You can see the configure virtual IP using `ip addr list eth0`.
 
 # keepalived_vrrp_instances:
 #   # `name` defines an individual instance of the VRRP protocol running on an interface.
