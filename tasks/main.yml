@@ -1,0 +1,19 @@
+---
+# tasks file for keepalived
+
+- name: install keepalived
+  package:
+    name: keepalived
+    state: present
+
+- name: configure keepalived
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+    mode: "0640"
+
+- name: start keepalived
+  service:
+    name: keepalived
+    state: started
+    enabled: yes

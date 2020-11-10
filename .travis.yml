@@ -1,0 +1,51 @@
+---
+#
+# Ansible managed
+#
+language: python
+
+os: linux
+dist: xenial
+
+python:
+  - "3.8"
+
+services:
+  - docker
+
+env:
+  global:
+    namespace="robertdebock"
+  jobs:
+    - image="alpine" tag="latest"
+    - image="amazonlinux" tag="1"
+    - image="amazonlinux" tag="latest"
+    - image="centos" tag="7"
+    - image="centos" tag="latest"
+    - image="debian" tag="latest"
+    - image="debian" tag="bullseye"
+    - image="fedora" tag="32"
+    - image="fedora" tag="latest"
+    - image="fedora" tag="rawhide"
+    - image="opensuse" tag="latest"
+    - image="ubuntu" tag="latest"
+    - image="ubuntu" tag="bionic"
+    - image="ubuntu" tag="xenial"
+
+cache:
+  - pip
+
+install:
+  - pip install --upgrade pip
+  - pip install tox
+
+script:
+  - function retry { counter=0 ; until "$@" ; do exit=$? ; counter=$(($counter + 1)) ; if [ $counter -ge 3 ] ; then return $exit ; fi ; done ; return 0; } ; retry tox
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  slack:
+    secure: "Z+p0C3WvUVe8oq04sYdcxK6Cvp1sDJE8/Nckt2n1w9IQuQYLf+ImHuDUIKtKqD9sIhZ8jU/BgTDULz/rFHBGq1XFSz2K75ZF42JXKLnRtH5SBsHZguWCpd1VF1RD+xpZwbD5fQOtBnlpxRPV32w5FzHPnt9GI5eu0LMwr8JS0A15QT2asv///9F1tqRN9bRNNg50Rse1lUi4qRHUbKivnKCCOite3HKX+4hm5zm1iRxpsaXZcuPaxtDfH6b0hewzRKhpx8v0QfAnVPzKF8YhAGL3Wf/PVjXcLM1r+NbH0I9+5BgWg6YCYF9HEkjfyU3288+8P7ZYLVQc1Xx20w7K4rNWMZFYQYciZGG5BjkBMmGJMp5sxiTkdR9013l2aRBdQCBY+H3mAiIU83X+7oqbqXuPQR7dDaIanb4CAIz/deR75TWTQc4Lql6UEWlLiAlhnHnUXhHEzYhOj36J28XhV804SLb22DRC3cCbwmRdAC09OPcbH5eWgX3wFpwretmEpezK7pqsAWTy4/vcnlCPtUUt3zQQD3vd7blx8ptLdGWsinHk0ZxV3DzOKNDbT/VNlNNLK/P1Cp/VVuSlhgEHMjojGPrFjheTunrLqAahxVD6QaqpEbSnEsIzl7tV6NQBs5st4Ko2lIaEjieR8eKoaN/ZLcASDwP2tddp4Gme0yE="
+    on_success: change
+    template: "%{result}: %{repository_slug}@%{branch}, build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>)"
+  email: false

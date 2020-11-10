@@ -1,0 +1,38 @@
+---
+- name: test if keepalived_vrrp_instances is set correctly
+  assert:
+    that:
+      - keepalived_vrrp_instances is defined
+      - keepalived_vrrp_instances | length > 0
+      - keepalived_vrrp_instances is iterable
+    quiet: yes
+
+- name: test if item in keepalived_vrrp_instances is set correctly
+  assert:
+    that:
+      - item.name is defined
+      - item.name | length > 0
+      - item.state is defined
+      - item.state | length > 0
+      - item.state in ["BACKUP", "MASTER"]
+      - item.interface is defined
+      - item.interface | length > 0
+      - item.virtual_router_id is defined
+      - item.virtual_router_id | int
+      - item.virtual_router_id | int >= 0
+      - item.virtual_router_id | int <= 255
+      - item.priority is defined
+      - item.priority | int
+      - item.priority | int >= 1
+      - item.priority | int <= 255
+    quiet: yes
+  loop: "{{ keepalived_vrrp_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: loop over keepalived_vrrp_instances
+  include: assert_instances.yml
+  loop: "{{ keepalived_vrrp_instances }}"
+  loop_control:
+    label: "{{ instance.name }}"
+    loop_var: instance
