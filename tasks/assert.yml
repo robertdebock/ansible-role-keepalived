@@ -18,11 +18,11 @@
       - item.interface is defined
       - item.interface | length > 0
       - item.virtual_router_id is defined
-      - item.virtual_router_id | int
+      - item.virtual_router_id is number
       - item.virtual_router_id | int >= 0
       - item.virtual_router_id | int <= 255
       - item.priority is defined
-      - item.priority | int
+      - item.priority is number
       - item.priority | int >= 1
       - item.priority | int <= 255
     quiet: yes

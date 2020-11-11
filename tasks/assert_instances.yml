@@ -25,7 +25,7 @@
       - item.name is defined
       - item.name | length > 0
       - item.cidr is defined
-      - item.cidr | int
+      - item.cidr is number
       - item.cidr | int >= 0
       - item.cidr | int <= 32
   loop: "{{ instance.virtual_ipaddresses }}"
