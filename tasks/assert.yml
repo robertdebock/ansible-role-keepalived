@@ -15,12 +15,12 @@
       - item.interface is defined
       - item.virtual_router_id is defined
       - item.virtual_router_id is number
-      - item.virtual_router_id | int >= 0
-      - item.virtual_router_id | int <= 255
+      - item.virtual_router_id >= 0
+      - item.virtual_router_id <= 255
       - item.priority is defined
       - item.priority is number
-      - item.priority | int >= 1
-      - item.priority | int <= 255
+      - item.priority >= 1
+      - item.priority <= 255
     quiet: yes
   loop: "{{ keepalived_vrrp_instances }}"
   loop_control:
