@@ -5,3 +5,5 @@
   service:
     name: keepalived
     state: restarted
+  when:
+    - not ansible_check_mode | bool
