@@ -1,4 +1,5 @@
 ---
+
 - name: test if keepalived_vrrp_instances is set correctly
   assert:
     that:
