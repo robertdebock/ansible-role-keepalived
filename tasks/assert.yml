@@ -11,9 +11,12 @@
   assert:
     that:
       - item.name is defined
+      - item.name is string
       - item.state is defined
+      - item.state is string
       - item.state in [ "BACKUP", "MASTER" ]
       - item.interface is defined
+      - item.interface is string
       - item.virtual_router_id is defined
       - item.virtual_router_id is number
       - item.virtual_router_id >= 0
