@@ -2,9 +2,9 @@
 
 Install and configure keepalived
 
-|Travis|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|------|-------|---------|-------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-keepalived.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-keepalived)|[![github](https://github.com/robertdebock/ansible-role-keepalived/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-keepalived/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-keepalived/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-keepalived)|[![quality](https://img.shields.io/ansible/quality/51728)](https://galaxy.ansible.com/robertdebock/keepalived)|[![downloads](https://img.shields.io/ansible/role/d/51728)](https://galaxy.ansible.com/robertdebock/keepalived)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-keepalived.svg)](https://github.com/robertdebock/ansible-role-keepalived/releases/)|
+|GitHub|GitLab|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-keepalived/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-keepalived/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-keepalived/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-keepalived)|[![quality](https://img.shields.io/ansible/quality/51728)](https://galaxy.ansible.com/robertdebock/keepalived)|[![downloads](https://img.shields.io/ansible/role/d/51728)](https://galaxy.ansible.com/robertdebock/keepalived)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-keepalived.svg)](https://github.com/robertdebock/ansible-role-keepalived/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -93,9 +93,9 @@ These variables are set in `defaults/main.yml`:
 
 The following roles are used to prepare a system. You may choose to prepare your system in another way, I have tested these roles as well.
 
-| Requirement | Travis | GitHub |
+| Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status Travis](https://travis-ci.com/robertdebock/ansible-role-bootstrap.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) |
+| [robertdebock.bootstrap](https://galaxy.ansible.com/robertdebock/bootstrap) | [![Build Status GitHub](https://github.com/robertdebock/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-bootstrap/actions) | [![Build Status GitLab ](https://gitlab.com/robertdebock/ansible-role-ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-bootstrap)
 
 ## [Context](#context)
 
@@ -117,7 +117,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |opensuse|all|
 |ubuntu|focal, bionic|
 
-The minimum version of Ansible required is 2.9, tests have been done to:
+The minimum version of Ansible required is 2.10, tests have been done to:
 
 - The previous version.
 - The current version.
@@ -125,39 +125,7 @@ The minimum version of Ansible required is 2.9, tests have been done to:
 
 
 
-## [Testing](#testing)
-
-[Unit tests](https://travis-ci.com/robertdebock/ansible-role-keepalived) are done on every commit, pull request, release and periodically.
-
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-keepalived/issues)
-
-Testing is done using [Tox](https://tox.readthedocs.io/en/latest/) and [Molecule](https://github.com/ansible/molecule):
-
-[Tox](https://tox.readthedocs.io/en/latest/) tests multiple ansible versions.
-[Molecule](https://github.com/ansible/molecule) tests multiple distributions.
-
-To test using the defaults (any installed ansible version, namespace: `robertdebock`, image: `fedora`, tag: `latest`):
-
-```
-molecule test
-
-# Or select a specific image:
-image=ubuntu molecule test
-# Or select a specific image and a specific tag:
-image="debian" tag="stable" tox
-```
-
-Or you can test multiple versions of Ansible, and select images:
-Tox allows multiple versions of Ansible to be tested. To run the default (namespace: `robertdebock`, image: `fedora`, tag: `latest`) tests:
-
-```
-tox
-
-# To run CentOS (namespace: `robertdebock`, tag: `latest`)
-image="centos" tox
-# Or customize more:
-image="debian" tag="stable" tox
-```
 
 ## [License](#license)
 
