@@ -2,7 +2,7 @@
 # handlers file for keepalived
 
 - name: restart keepalived
-  service:
+  ansible.builtin.service:
     name: keepalived
     state: restarted
   when:
