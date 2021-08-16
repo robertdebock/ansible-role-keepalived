@@ -4,8 +4,7 @@
 vrrp_instance {{ instance.name }} {
   state {{ instance.state }}
   interface {{ instance.interface }}
-  {% if instance.unicast_src_ip is defined %}
-  unicast_src_ip {{ instance.unicast_src_ip }}
+{% if instance.unicast_src_ip is defined %}  unicast_src_ip {{ instance.unicast_src_ip }}
   unicast_peer {
     {{ instance.secondary_private_ip }}
   }
