@@ -8,7 +8,7 @@ Install and configure keepalived
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -22,6 +22,8 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         - name: VI_1
           state: MASTER
           interface: eth0
+          unicast_src_ip: 192.168.1.1
+          secondary_private_ip: 192.168.1.2
           virtual_router_id: 51
           priority: 255
           authentication:
@@ -32,7 +34,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
               cidr: 24
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
@@ -71,6 +73,10 @@ These variables are set in `defaults/main.yml`:
 #     state: MASTER
 #   # `interface` defines the interface that VRRP runs on.
 #     interface: eth0
+#   # `unicast_src_ip` contains the primary address for unicasts.
+#     unicast_src_ip: 192.168.1.1
+#   # `secondary_private_ip` refers the the peer's unicast address.
+#     secondary_private_ip: 192.168.1.2
 #   # `virtual_router_id` is the unique identifier.
 #     virtual_router_id: 51
 #   # `priority` is the advertised priority.
