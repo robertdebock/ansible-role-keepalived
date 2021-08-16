@@ -42,8 +42,5 @@
       - item.secondary_private_ip is string
       - item.secondary_private_ip | length >= 8
       - item.secondary_private_ip | length <= 16
-  loop: "{{ instance }}"
-  loop_control:
-    label: "{{ item.unicast_src_ip }}"
   when:
     - item.unicast_src_ip is defined
