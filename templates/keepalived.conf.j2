@@ -9,7 +9,7 @@ vrrp_instance {{ instance.name }} {
   unicast_peer {
     {{ instance.secondary_private_ip }}
   }
-  {% endif }
+  {% endif %}
   virtual_router_id {{ instance.virtual_router_id }}
   priority {{ instance.priority }}
   authentication {
