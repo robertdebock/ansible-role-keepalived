@@ -12,24 +12,13 @@
     state: present
 
 - name: configure keepalived
-  block:
-    - name: place template
-      ansible.builtin.template:
-        src: keepalived.conf.j2
-        dest: /etc/keepalived/keepalived.conf
-        mode: "0640"
-        validate: keepalived --config-test --use-file=%s
-      notify:
-        - restart keepalived
-  rescue:
-    - name: dump config
-      ansible.builtin.template:
-        src: keepalived.conf.j2
-        dest: /tmp/keepalived.conf
-        mode: "0640"
-    - name: show config
-      debug:
-        msg: "{{ lookup('template', 'keepalived.conf.j2') }}"
+  ansible.builtin.template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+    mode: "0640"
+    validate: keepalived --config-test --use-file=%s
+  notify:
+    - restart keepalived
 
 - name: start keepalived
   ansible.builtin.service:
