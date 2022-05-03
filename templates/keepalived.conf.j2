@@ -4,9 +4,9 @@
 {% if instance.check_status_command is defined %}
 
 vrrp_script chk_command_{{ instance.virtual_router_id }} {
-   script "{{ instance.check_status_command }} "   # verify the pid existance
+   script "{{ instance.check_status_command }} "   # command that verify status 
    interval 2                    # check every 2 seconds
-   weight 3                      # add 2 points of prio if OK
+   weight 3                      # add 3 points of prio if OK
 }
 
 {% endif %}
