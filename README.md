@@ -79,8 +79,10 @@ The default values for the variables are set in `defaults/main.yml`:
 #     secondary_private_ip: "192.168.1.2"
 #   # `virtual_router_id` is the unique identifier.
 #     virtual_router_id: 51
-#   # `priority` is the advertised priority.
+#   # `priority` is the advertised priority. If check_status_command is set, do not set priority over 252 
 #     priority: 255
+#   # `check_status_command` will make +3 to priority if command return is 0. (optional)
+#     check_status_command: /sbin/postfix status
 #   # `authentication` specifies the information necessary for servers participating in VRRP to authenticate with each other.
 #     authentication:
 #       auth_type: PASS
