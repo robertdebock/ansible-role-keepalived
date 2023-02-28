@@ -5,4 +5,4 @@
 repository:
   description: Install and configure keepalived
   homepage: https://robertdebock.nl/
-  topics: keepalived, ansible, molecule, tox, playbook, hacktoberfest
+  topics: keepalived, ansible, molecule, tox, playbook
