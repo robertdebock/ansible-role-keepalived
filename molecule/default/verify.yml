@@ -5,6 +5,6 @@
   gather_facts: yes
 
   tasks:
-    - name: check keepalived
+    - name: Check keepalived
       ansible.builtin.command:
         cmd: keepalived --check
