@@ -37,7 +37,7 @@ vrrp_instance {{ instance.name }} {
 }
 {% endfor %}
 
-{% if cnt[0] > 1 %}
+{% if cnt[0] > 0 %}
 global_defs {
   script_user {{ instance.user_script }} 
   enable_script_security
