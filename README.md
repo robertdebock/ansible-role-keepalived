@@ -86,8 +86,6 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 #     priority: 255
 #   # `check_status_command` will make +3 to priority if command return is 0 (optional). example:
 #     check_status_command: /sbin/postfix status
-#   # `user_script` is used to securely run check_status_command
-#     user_script: haproxy
 #   # `authentication` specifies the information necessary for servers participating in VRRP to authenticate with each other.
 #     authentication:
 #       auth_type: PASS
@@ -96,6 +94,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 #     virtual_ipaddresses:
 #       - name: "192.168.122.200"
 #         cidr: 24
+# # `keepalived_vrrp_user_script` is used to securely run check_status_command
+# keepalived_vrrp_user_script: haproxy
 keepalived_vrrp_instances: []
 ```
 
