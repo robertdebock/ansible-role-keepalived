@@ -39,7 +39,7 @@ vrrp_instance {{ instance.name }} {
 
 {% if cnt[0] > 0 %}
 global_defs {
-  script_user {{ instance.user_script }} 
+  script_user {{ keepalived_vrrp_user_script }} 
   enable_script_security
 }
 {% endif %}
