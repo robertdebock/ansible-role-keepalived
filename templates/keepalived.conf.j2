@@ -1,6 +1,6 @@
 {{ ansible_managed | comment }}
 
-global_def {
+global_defs {
 {% if instance.check_status_command is defined %}
   enable_script_security
 {% endif %}
