@@ -1,5 +1,11 @@
 {{ ansible_managed | comment }}
 
+global_def {
+{% if instance.check_status_command is defined %}
+  enable_script_security
+{% endif %}
+}
+
 {% for instance in keepalived_vrrp_instances %}
 {% if instance.check_status_command is defined %}
 
