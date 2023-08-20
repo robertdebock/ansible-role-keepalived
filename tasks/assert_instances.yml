@@ -54,6 +54,7 @@
     that:
       - item.check_status_command is string
       - item.priority <= 252
+      - keepalived_vrrp_user_script is string
     quiet: yes
   when:
     - item.check_status_command is defined

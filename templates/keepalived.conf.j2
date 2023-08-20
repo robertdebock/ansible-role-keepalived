@@ -1,5 +1,5 @@
 {{ ansible_managed | comment }}
-
+{% set cnt = [0] %}
 {% for instance in keepalived_vrrp_instances %}
 {% if instance.check_status_command is defined %}
 
@@ -8,7 +8,7 @@ vrrp_script chk_command_{{ instance.virtual_router_id }} {
    interval 2                    # check every 2 seconds
    weight 3                      # add 3 points of prio if OK
 }
-
+{% if cnt.append(cnt.pop() + 1) %}{% endif %} 
 {% endif %}
 vrrp_instance {{ instance.name }} {
   state {{ instance.state }}
@@ -36,3 +36,10 @@ vrrp_instance {{ instance.name }} {
 {% endif %}
 }
 {% endfor %}
+
+{% if cnt[0] > 0 %}
+global_defs {
+  script_user {{ keepalived_vrrp_user_script }} 
+  enable_script_security
+}
+{% endif %}

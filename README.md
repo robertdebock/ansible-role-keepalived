@@ -94,6 +94,8 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 #     virtual_ipaddresses:
 #       - name: "192.168.122.200"
 #         cidr: 24
+# # `keepalived_vrrp_user_script` is used to securely run check_status_command
+# keepalived_vrrp_user_script: haproxy
 keepalived_vrrp_instances: []
 ```
 
