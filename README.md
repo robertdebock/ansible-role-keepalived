@@ -2,9 +2,9 @@
 
 Install and configure keepalived
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-keepalived/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-keepalived/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-keepalived/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-keepalived)|[![quality](https://img.shields.io/ansible/quality/51728)](https://galaxy.ansible.com/robertdebock/keepalived)|[![downloads](https://img.shields.io/ansible/role/d/51728)](https://galaxy.ansible.com/robertdebock/keepalived)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-keepalived.svg)](https://github.com/robertdebock/ansible-role-keepalived/releases/)|
+|GitHub|GitLab|Downloads|Version|
+|------|------|---------|-------|
+|[![github](https://github.com/robertdebock/ansible-role-keepalived/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-keepalived/actions)|[![gitlab](https://gitlab.com/robertdebock-iac/ansible-role-keepalived/badges/master/pipeline.svg)](https://gitlab.com/robertdebock-iac/ansible-role-keepalived)|[![downloads](https://img.shields.io/ansible/role/d/24521)](https://galaxy.ansible.com/robertdebock/keepalived)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-keepalived.svg)](https://github.com/robertdebock/ansible-role-keepalived/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -135,7 +135,7 @@ The minimum version of Ansible required is 2.12, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-keepalived/issues)
+If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-keepalived/issues).
 
 ## [License](#license)
 
