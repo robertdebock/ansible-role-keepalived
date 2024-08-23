@@ -1,5 +1,16 @@
 {{ ansible_managed | comment }}
+{% if keepalived_global_defs is defined %}
 
+global_defs {
+{% if keepalived_global_defs.enable_script_security is defined and keepalived_global_defs.enable_script_security %}
+  enable_script_security
+{% endif %}
+{% if keepalived_global_defs.script_user is defined and keepalived_global_defs.enable_script_security %}
+  script_user {{  keepalived_global_defs.script_user }}
+{% endif %}
+}
+
+{% endif %}
 {% for instance in keepalived_vrrp_instances %}
 {% if instance.check_status_command is defined %}
 
@@ -33,6 +44,26 @@ vrrp_instance {{ instance.name }} {
   track_script {
     chk_command_{{ instance.virtual_router_id }}
 }
+{% endif %}
+{% if instance.virtual_routes is defined %}
+
+  virtual_routes {
+{% for virtual_route in instance.virtual_routes %}
+{% if virtual_route.via is defined %}
+    {{ virtual_route.dest }} via {{ virtual_route.via }} src {{ virtual_route.src }} dev {{ virtual_route.dev }}
+{% elif virtual_route.via is not defined %}
+    {{ virtual_route.dest }} src {{ virtual_route.src }} dev {{ virtual_route.dev }}
+{% endif %}
+{% endfor %}
+  }
+{% endif %}
+{% if instance.notify_master is defined %}
+
+  notify_master {{ instance.notify_master }}
+{% endif %}{% if instance.notify_backup is defined %}
+  notify_backup {{ instance.notify_backup }}
+{% endif %}{% if instance.notify_stop is defined %}
+  notify_stop {{ instance.notify_stop }}
 {% endif %}
 }
 {% endfor %}
