@@ -1,4 +1,13 @@
 ---
+- name: assert | Test keepalived_global_defs if defined
+  ansible.builtin.assert:
+    that:
+      - keepalived_global_defs is defined
+      - keepalived_global_defs is mapping
+      - keepalived_global_defs.enable_script_security is undefined or keepalived_global_defs.enable_script_security is boolean
+      - keepalived_global_defs.script_user is undefined or keepalived_global_defs.script_user is string
+    quiet: true
+  when: keepalived_global_defs is defined
 
 - name: assert | Test keepalived_vrrp_instances
   ansible.builtin.assert:
@@ -27,6 +36,9 @@
       - item.priority is number
       - item.priority >= 1
       - item.priority <= 255
+      - item.notify_master is undefined or item.notify_master is string
+      - item.notify_backup is undefined or item.notify_backup is string
+      - item.notify_stop is undefined or item.notify_stop is string
     quiet: true
   loop: "{{ keepalived_vrrp_instances }}"
   loop_control:

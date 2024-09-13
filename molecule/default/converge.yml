@@ -6,6 +6,9 @@
 
   roles:
     - role: ansible-role-keepalived
+      keepalived_global_defs:
+        enable_script_security: true
+        script_user: nobody
       keepalived_vrrp_instances:
         - name: VI_1
           state: MASTER
@@ -20,3 +23,14 @@
           virtual_ipaddresses:
             - name: "172.17.0.8"
               cidr: 16
+          virtual_routes:
+            - dest: "192.168.10.1"
+              via: "172.17.0.1"
+              src: "172.17.0.8"
+              dev: eth0
+            - dest: "172.17.0.77"
+              src: "172.17.0.8"
+              dev: eth0
+          notify_master: '"/usr/sbin/service haproxy start" root'
+          notify_backup: '"/usr/sbin/service haproxy stop" root'
+          notify_stop: '"/usr/sbin/service haproxy stop" root'

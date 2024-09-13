@@ -35,6 +35,29 @@
   loop_control:
     label: "{{ item.name }}"
 
+- name: assert_instances | Test item in instance.virtual_routes
+  ansible.builtin.assert:
+    that:
+      - item | length > 2
+      - item | length <= 4
+      - item.dest is defined
+      - item.dest is string
+      - item.dest | length >= 8
+      - item.dest | length <= 16
+      - item.via is undefined or item.via is string
+      - item.via is undefined or item.via| length >= 8
+      - item.via is undefined or item.via | length <= 16
+      - item.src is defined
+      - item.src is string
+      - item.src | length >= 8
+      - item.src | length <= 16
+      - item.dev is defined
+      - item.dev is string
+    quiet: true
+  loop: "{{ instance.virtual_routes }}"
+  loop_control:
+    label: "{{ item.dest }}"
+
 - name: assert_instances | Test item in instance.unicast_src_ip
   ansible.builtin.assert:
     that:
