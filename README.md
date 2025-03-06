@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   roles:
-    - role: ansible-role-keepalived
+    - role: robertdebock.keepalived
       keepalived_vrrp_instances:
         - name: VI_1
           state: MASTER
