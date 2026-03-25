@@ -1,12 +1,28 @@
 {{ ansible_managed | comment }}
 
+{% if keepalived_global_defs is defined and keepalived_global_defs %}
+global_defs {
+  {% for opt_name, opt_value in keepalived_global_defs.items() %}
+  {{ opt_name }}{% if opt_value %} {{ opt_value }}{% endif %}{% if not loop.last %}
+
+  {% endif %}
+  {% endfor %}
+
+}
+{% endif %}
+
 {% for instance in keepalived_vrrp_instances %}
 {% if instance.check_status_command is defined %}
 
 vrrp_script chk_command_{{ instance.virtual_router_id }} {
-   script "{{ instance.check_status_command }} "   # command that verify status 
-   interval 2                    # check every 2 seconds
-   weight 3                      # add 3 points of prio if OK
+   script "{{ instance.check_status_command }}"   # command that verify status
+   interval {{ instance.check_status_interval | default(2) }}          # (default) check every 2 seconds
+   weight {{ instance.check_status_weight | default(3) }}              # (default) add 3 points of prio if OK
+   {% if instance.check_status_opts is defined and instance.check_status_opts %}
+   {% for opt_name, opt_value in instance.check_status_opts.items() %}
+   {{ opt_name }} {{ opt_value }}
+   {% endfor %}
+   {% endif %}
 }
 
 {% endif %}
@@ -26,13 +42,13 @@ vrrp_instance {{ instance.name }} {
   }
   virtual_ipaddress {
   {% for ip in instance.virtual_ipaddresses %}
-  {{ ip.name }}/{{ ip.cidr }}
-{% endfor %}
+    {{ ip.name }}/{{ ip.cidr }}
+  {% endfor %}
   }
 {% if instance.check_status_command is defined %}
   track_script {
     chk_command_{{ instance.virtual_router_id }}
-}
+  }
 {% endif %}
 }
 {% endfor %}
