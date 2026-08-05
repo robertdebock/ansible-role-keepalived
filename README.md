@@ -33,6 +33,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           virtual_ipaddresses:
             - name: "172.17.0.8"
               cidr: 16
+      keepalived_global_defs:
+        enable_script_security: ~
+        script_user: root
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-keepalived/blob/master/molecule/default/prepare.yml):
@@ -86,6 +89,14 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 #     priority: 255
 #   # `check_status_command` will make +3 to priority if command return is 0 (optional). example:
 #     check_status_command: /sbin/postfix status
+#   # `check_status_interval` interval for status check (defaults to 2 seconds)
+#     check_status_interval: 2
+#   # `check_status_weight`: weight to add in status check (default to 3)
+#     check_status_weight: 3
+#   # `check_status_opts`: extra opts to add to status check defaults
+#     check_status_opts:
+#       rise: 2
+#       fall: 2
 #   # `authentication` specifies the information necessary for servers participating in VRRP to authenticate with each other.
 #     authentication:
 #       auth_type: PASS
@@ -95,6 +106,15 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 #       - name: "192.168.122.200"
 #         cidr: 24
 keepalived_vrrp_instances: []
+
+# keepalived_global_defs:
+# Configure optional key-value pairs here. for global definitions. E.g. required for adding scripts usage in newer keepalived versions.
+# Meant to be generic as possible. Can also accept keys without values.
+# Example:
+# keepalived_globals_defs:
+#  enable_script_security: ~  # <- This will not add an value after the key. E.g. the yaml null variable ~ is used
+#  script_user: root
+keepalived_global_defs: {}
 ```
 
 ## [Requirements](#requirements)
